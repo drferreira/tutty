@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages-conf>
+	<exception-message>
+		<exception-register>Exception.class</exception-register>
+		<message id="ID_MESSAGE" severity="INFO">
+			<resource>ADDRESS_RESOURCE_PROPERTIE</resource>
+			<key>KEY_MESSAGE</key>
+		</message>
+		<message id="ID_MESSAGE_2" severity="WARNING">
+			<resource>ADDRESS_RESOURCE_PROPERTIE</resource>
+			<key>KEY_MESSAGE</key>
+		</message>
+		<message id="ID_MESSAGE_3" severity="INFO">
+			<resource>ADDRESS_RESOURCE_PROPERTIE</resource>
+			<key>KEY_MESSAGE</key>
+		</message>
+	</exception-message>
+	<exception-message>
+		<exception-register>Exception_Other.class</exception-register>
+		<message id="ID_MESSAGE" severity="INFO">
+			<resource>ADDRESS_RESOURCE_PROPERTIE</resource>
+			<key>KEY_MESSAGE</key>
+		</message>
+		<message id="ID_MESSAGE_2" severity="ERROR">
+			<resource>ADDRESS_RESOURCE_PROPERTIE</resource>
+			<key>KEY_MESSAGE</key>
+		</message>
+		<message id="ID_MESSAGE_3" severity="INFO">
+			<resource>ADDRESS_RESOURCE_PROPERTIE</resource>
+			<key>KEY_MESSAGE</key>
+		</message>
+	</exception-message>
+</messages-conf>
