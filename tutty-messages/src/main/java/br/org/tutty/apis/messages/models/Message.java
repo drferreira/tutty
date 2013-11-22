@@ -2,7 +2,7 @@ package br.org.tutty.apis.messages.models;
 
 import javax.faces.application.FacesMessage.Severity;
 
-import br.org.tutty.util.xstream.converters.GenericXStreamEnumConverter;
+import br.org.tutty.util.xstream.GenericXStreamEnumConverter;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;

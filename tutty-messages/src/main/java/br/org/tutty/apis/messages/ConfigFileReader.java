@@ -10,11 +10,10 @@ import br.org.tutty.apis.messages.exceptions.InterfaceMessageException;
 import br.org.tutty.apis.messages.models.ExceptionMessage;
 import br.org.tutty.apis.messages.models.Message;
 import br.org.tutty.apis.messages.models.MessagesConfigFile;
-import br.org.tutty.util.ReflectionUtil;
 import br.org.tutty.util.exceptions.ResourceNotFoundException;
-import br.org.tutty.util.web.faces.ResourceUtil;
+import br.org.tutty.util.jee.web.ResourceUtil;
+import br.org.tutty.util.xstream.GenericXStreamEnumConverter;
 import br.org.tutty.util.xstream.XStreamProcessorBuilder;
-import br.org.tutty.util.xstream.converters.GenericXStreamEnumConverter;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -35,21 +34,16 @@ public class ConfigFileReader extends XStreamProcessorBuilder {
 
 	private MessagesConfigFile messagesConf;
 	private InputStream inputStream;
-	private ResourceUtil resourceUtil;
-	private ReflectionUtil reflectionUtil;
 
 	@SuppressWarnings("unchecked")
-	public ConfigFileReader() throws ConfigFileNotFoundException {
+	public ConfigFileReader() {
 		super(Arrays.asList(Message.class, ExceptionMessage.class), Arrays.asList(new GenericXStreamEnumConverter(Severity.class)), new XStream());
-		init();
 	}
 	
-	public void init() throws ConfigFileNotFoundException {
+	public void init(ResourceUtil resourceUtil) throws ConfigFileNotFoundException {
 		process();
 
 		try {
-			reflectionUtil = new ReflectionUtil();
-			resourceUtil = new ResourceUtil(reflectionUtil.whoMadeTheLastCall().getClassLoader());
 			inputStream = resourceUtil.getResourceStream(MESSAGE_CONF_XML_NAME);
 			messagesConf = (MessagesConfigFile) xStream.fromXML(inputStream);
 
