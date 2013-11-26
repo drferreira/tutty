@@ -10,14 +10,15 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
  * Classe criada para representar uma mensagem definida atraves de uma exceção.
  * 
  * @author drferreira
+ * @param <T>
  * 
  */
 @XStreamAlias("exception-message")
-public class ExceptionMessage {
+public class ExceptionMessage<T extends Exception> {
 
 	@XStreamAlias("exception-register")
 	@XStreamAsAttribute
-	private Class<Exception> exception;
+	private Class<T> exception;
 	@XStreamImplicit
 	private List<Message> messages;
 
@@ -53,7 +54,7 @@ public class ExceptionMessage {
 		return null;
 	}
 
-	public Class<Exception> getException() {
+	public Class<T> getException() {
 		return exception;
 	}
 
@@ -61,7 +62,7 @@ public class ExceptionMessage {
 		return messages;
 	}
 
-	public void setException(Class<Exception> exception) {
+	public void setException(Class<T> exception) {
 		this.exception = exception;
 	}
 

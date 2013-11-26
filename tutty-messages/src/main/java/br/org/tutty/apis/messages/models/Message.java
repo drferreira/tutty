@@ -21,25 +21,30 @@ public class Message {
 	@XStreamConverter(GenericXStreamEnumConverter.class)
 	private Severity severity;
 
-	public Boolean isDefault(){
+	public Boolean isDefault() {
 		return id == null || id.isEmpty() ? true : false;
 	}
-	
+
 	public String getIdMessage() {
 		return id;
 	}
+
 	public void setIdMessage(String idMessage) {
 		this.id = idMessage;
 	}
+
 	public String getResource() {
 		return resource;
 	}
+
 	public void setResource(String resource) {
 		this.resource = resource;
 	}
+
 	public String getKeyMessage() {
 		return key;
 	}
+
 	public void setKeyMessage(String keyMessage) {
 		this.key = keyMessage;
 	}
@@ -47,4 +52,17 @@ public class Message {
 	public Severity getSeverity() {
 		return severity;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Message message = (Message) obj;
+
+		if (message.getIdMessage() == id) {
+			return true;
+			
+		} else {
+			return false;
+		}
+	}
+
 }

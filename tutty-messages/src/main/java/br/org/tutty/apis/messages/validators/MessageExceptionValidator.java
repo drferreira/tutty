@@ -6,6 +6,7 @@ import br.org.tutty.apis.messages.exceptions.EmptyRegisterException;
 import br.org.tutty.apis.messages.exceptions.NotFoundDefaultMessageException;
 import br.org.tutty.apis.messages.models.ExceptionMessage;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class MessageExceptionValidator implements Validator{
 	
 	private List<ExceptionMessage> exceptionMessages;
@@ -29,7 +30,7 @@ public class MessageExceptionValidator implements Validator{
 		}
 	}
 	
-	public void emptyRegisterException(){
+	private void emptyRegisterException(){
 		for (ExceptionMessage exceptionMessage : exceptionMessages) {
 			if (exceptionMessage.getException() == null) {
 				throw new EmptyRegisterException();

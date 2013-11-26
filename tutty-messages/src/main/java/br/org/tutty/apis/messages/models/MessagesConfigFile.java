@@ -2,6 +2,8 @@ package br.org.tutty.apis.messages.models;
 
 import java.util.List;
 
+import br.org.tutty.apis.messages.exceptions.MessageNotFoundException;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
@@ -12,7 +14,7 @@ public class MessagesConfigFile {
 	@XStreamAlias("exception-message")
 	@XStreamImplicit
 	private List<ExceptionMessage> exceptionMessages;
-
+	
 	public ExceptionMessage getExceptionMessage(Class exception){
 		String exceptionName = exception.getName();
 		
@@ -22,10 +24,15 @@ public class MessagesConfigFile {
 			}
 		}
 		
-		return null;
+		throw new MessageNotFoundException();
 	}
+	
 
 	public List<ExceptionMessage> getExceptionMessages() {
 		return exceptionMessages;
+	}
+
+	public void setExceptionMessages(List<ExceptionMessage> exceptionMessages) {
+		this.exceptionMessages = exceptionMessages;
 	}
 }

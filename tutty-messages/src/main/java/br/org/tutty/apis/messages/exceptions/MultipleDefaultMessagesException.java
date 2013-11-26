@@ -1,6 +1,6 @@
 package br.org.tutty.apis.messages.exceptions;
 
-public class DefaultMessagesRepeatedException extends RuntimeException {
+public class MultipleDefaultMessagesException extends RuntimeException {
 
 	/**
 	 * 

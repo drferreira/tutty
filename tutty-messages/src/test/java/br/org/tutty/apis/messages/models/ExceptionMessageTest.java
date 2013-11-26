@@ -15,6 +15,7 @@ import br.org.tutty.apis.messages.models.ExceptionMessage;
 import br.org.tutty.apis.messages.models.Message;
 
 @RunWith(MockitoJUnitRunner.class)
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class ExceptionMessageTest {
 	
 	private ExceptionMessage exceptionMessage;

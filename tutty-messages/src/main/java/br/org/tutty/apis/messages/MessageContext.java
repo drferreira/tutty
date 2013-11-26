@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import br.org.tutty.apis.messages.exceptions.ConfigFileNotFoundException;
 import br.org.tutty.apis.messages.exceptions.ConfigFileReadException;
-import br.org.tutty.apis.messages.exceptions.DefaultMessagesRepeatedException;
+import br.org.tutty.apis.messages.exceptions.MultipleDefaultMessagesException;
 import br.org.tutty.apis.messages.exceptions.IDMessageRepeatedException;
 import br.org.tutty.apis.messages.exceptions.InterfaceMessageException;
 import br.org.tutty.apis.messages.exceptions.MessageNotFoundException;
@@ -34,24 +34,24 @@ public class MessageContext {
 	private ConfigFileValidator configFileValidator;
 
 	@PostConstruct
-	public void setUp() throws IDMessageRepeatedException, DefaultMessagesRepeatedException, NotFoundDefaultMessageException, ConfigFileNotFoundException{
+	public void setUp() throws IDMessageRepeatedException, MultipleDefaultMessagesException, NotFoundDefaultMessageException, ConfigFileNotFoundException{
 		ResourceUtil resourceUtil = new ResourceUtil(reflectionUtil.whoMadeTheLastCall().getClassLoader());
 		configFileReader.init(resourceUtil);
 		configFileValidator = new ConfigFileValidator(configFileReader.getMessagesConf());
 		configFileValidator.validate();
 	}
 	
-	public void showDefaultMessage(Exception exception, String target) throws IOException{
+	public void showDefaultMessage(Exception exception, String target){
 		Message exceptionMessage = configFileReader.getMessage(new InterfaceMessageException(exception.getClass()));
 		showGenericMessage(exceptionMessage, target);
 	}
 	
-	public void showMessage(InterfaceMessageException interfaceMessageException, String target) throws IOException{
+	public void showMessage(InterfaceMessageException interfaceMessageException, String target){
 		Message exceptionMessage = configFileReader.getMessage(interfaceMessageException);
 		showGenericMessage(exceptionMessage, target);
 	}
 	
-	public void showMessage(Exception exception, String idMessage, String target) throws IOException{
+	public void showMessage(Exception exception, String idMessage, String target){
 		Message exceptionMessage = configFileReader.getMessage(new InterfaceMessageException(exception.getClass(), idMessage));
 		showGenericMessage(exceptionMessage, target);
 	}
@@ -75,4 +75,6 @@ public class MessageContext {
 			throw new MessageNotFoundException();
 		}
 	}
+	
+	
 }

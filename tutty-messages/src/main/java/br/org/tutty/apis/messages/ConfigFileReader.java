@@ -28,6 +28,7 @@ import com.thoughtworks.xstream.XStream;
  * @author drferreira
  * 
  */
+@SuppressWarnings("rawtypes")
 public class ConfigFileReader extends XStreamProcessorBuilder {
 
 	public static final String MESSAGE_CONF_XML_NAME = "message-conf.xml";

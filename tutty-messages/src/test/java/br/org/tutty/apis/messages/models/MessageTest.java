@@ -1,4 +1,4 @@
-package br.org.tutty.apis.messages;
+package br.org.tutty.apis.messages.models;
 
 
 import static org.junit.Assert.assertEquals;
