@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages-conf>
+	<exception-message>
+		<exception-register>java.lang.Exception</exception-register>
+		<message severity="INFO">
+			<resource>messages</resource>
+			<key>test1</key>
+		</message>
+		<message id="warning" severity="WARN">
+			<resource>messages</resource>
+			<key>test2</key>
+		</message>
+		<message id="error" severity="ERROR">
+			<resource>messages</resource>
+			<key>test3</key>
+		</message>
+	</exception-message>
+	<exception-message>
+		<exception-register>br.org.tutty.apis.messages.exceptions.DataNotFoundException</exception-register>
+		<message severity="INFO">
+			<resource>messages</resource>
+			<key>test4</key>
+		</message>
+		<message id="warning" severity="WARN">
+			<resource>messages</resource>
+			<key>test5</key>
+		</message>
+		<message id="error" severity="ERROR">
+			<resource>messages</resource>
+			<key>test6</key>
+		</message>
+	</exception-message>
+</messages-conf>

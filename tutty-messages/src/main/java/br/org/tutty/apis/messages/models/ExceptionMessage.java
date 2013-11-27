@@ -19,7 +19,7 @@ public class ExceptionMessage<T extends Exception> {
 	@XStreamAlias("exception-register")
 	@XStreamAsAttribute
 	private Class<T> exception;
-	@XStreamImplicit
+	@XStreamImplicit(itemFieldName = "message")
 	private List<Message> messages;
 
 	/**

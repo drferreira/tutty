@@ -24,6 +24,8 @@ import br.org.tutty.util.reflections.ReflectionUtil;
 @SessionScoped
 public class MessageContext {
 	
+	public static final String MESSAGE_CONF_XML_NAME = "message-conf.xml";
+	
 	@Inject
 	private ConfigFileReader configFileReader;
 	@Inject
@@ -36,7 +38,10 @@ public class MessageContext {
 	@PostConstruct
 	public void setUp() throws IDMessageRepeatedException, MultipleDefaultMessagesException, NotFoundDefaultMessageException, ConfigFileNotFoundException{
 		ResourceUtil resourceUtil = new ResourceUtil(reflectionUtil.whoMadeTheLastCall().getClassLoader());
+		
+		configFileReader = new ConfigFileReader(MESSAGE_CONF_XML_NAME);
 		configFileReader.init(resourceUtil);
+		
 		configFileValidator = new ConfigFileValidator(configFileReader.getMessagesConf());
 		configFileValidator.validate();
 	}
@@ -75,6 +80,4 @@ public class MessageContext {
 			throw new MessageNotFoundException();
 		}
 	}
-	
-	
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages-conf>
+	<exception-message>
+		<exception-register>Exception.class</exception-register>
+		<message severity="SEVERITY_INFO">
+			<resource>messages</resource>
+			<key>test1</key>
+		</message>
+		<message id="warning" severity="SEVERITY_WARN">
+			<resource>messages</resource>
+			<key>test2</key>
+		</message>
+		<message id="error" severity="SEVERITY_ERROR">
+			<resource>messages</resource>
+			<key>test3</key>
+		</message>
+	</exception-message>
+	<exception-message>
+		<exception-register>DataNotFoundException.class</exception-register>
+		<message severity="SEVERITY_INFO">
+			<resource>messages</resource>
+			<key>test4</key>
+		</message>
+		<message id="warning" severity="SEVERITY_WARN">
+			<resource>messages</resource>
+			<key>test5</key>
+		</message>
+		<message id="error" severity="SEVERITY_ERROR">
+			<resource>messages</resource>
+			<key>test6</key>
+		</message>
+	</exception-message>
+</messages-conf>

@@ -58,11 +58,13 @@ public class MessageContextTest {
 	
 	@Before
 	public void setUp() throws Exception{
+		PowerMockito.whenNew(ConfigFileValidator.class).withArguments(messagesConfigFile).thenReturn(configFileValidator);
+		PowerMockito.whenNew(ResourceUtil.class).withAnyArguments().thenReturn(resourceUtil);
+		PowerMockito.whenNew(ConfigFileReader.class).withArguments(MessageContext.MESSAGE_CONF_XML_NAME).thenReturn(configFileReader);;
+		
 		Mockito.when(configFileReader.getMessagesConf()).thenReturn(messagesConfigFile);
 		Mockito.when(reflectionUtil.whoMadeTheLastCall()).thenReturn(MessageContextTest.class);
 		
-		PowerMockito.whenNew(ResourceUtil.class).withAnyArguments().thenReturn(resourceUtil);
-		PowerMockito.whenNew(ConfigFileValidator.class).withArguments(messagesConfigFile).thenReturn(configFileValidator);
 	}
 	
 	@Test

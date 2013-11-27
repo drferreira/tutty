@@ -11,8 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XStreamAlias("messages-conf")
 public class MessagesConfigFile {
 	
-	@XStreamAlias("exception-message")
-	@XStreamImplicit
+	@XStreamImplicit(itemFieldName = "exception-message")
 	private List<ExceptionMessage> exceptionMessages;
 	
 	public ExceptionMessage getExceptionMessage(Class exception){

@@ -3,8 +3,6 @@ package br.org.tutty.apis.messages;
 import java.io.InputStream;
 import java.util.Arrays;
 
-import javax.print.attribute.standard.Severity;
-
 import br.org.tutty.apis.messages.exceptions.ConfigFileNotFoundException;
 import br.org.tutty.apis.messages.exceptions.InterfaceMessageException;
 import br.org.tutty.apis.messages.models.ExceptionMessage;
@@ -12,7 +10,7 @@ import br.org.tutty.apis.messages.models.Message;
 import br.org.tutty.apis.messages.models.MessagesConfigFile;
 import br.org.tutty.util.exceptions.ResourceNotFoundException;
 import br.org.tutty.util.jee.web.ResourceUtil;
-import br.org.tutty.util.xstream.GenericXStreamEnumConverter;
+import br.org.tutty.util.xstream.SeverityMessageConverter;
 import br.org.tutty.util.xstream.XStreamProcessorBuilder;
 
 import com.thoughtworks.xstream.XStream;
@@ -31,21 +29,21 @@ import com.thoughtworks.xstream.XStream;
 @SuppressWarnings("rawtypes")
 public class ConfigFileReader extends XStreamProcessorBuilder {
 
-	public static final String MESSAGE_CONF_XML_NAME = "message-conf.xml";
-
+	private String messageConfXmlName;
 	private MessagesConfigFile messagesConf;
 	private InputStream inputStream;
 
 	@SuppressWarnings("unchecked")
-	public ConfigFileReader() {
-		super(Arrays.asList(Message.class, ExceptionMessage.class), Arrays.asList(new GenericXStreamEnumConverter(Severity.class)), new XStream());
+	public ConfigFileReader(String messageConfXmlName) {
+		super(Arrays.asList(MessagesConfigFile.class, Message.class, ExceptionMessage.class), Arrays.asList(new SeverityMessageConverter()), new XStream());
+		this.messageConfXmlName = messageConfXmlName;
 	}
 	
 	public void init(ResourceUtil resourceUtil) throws ConfigFileNotFoundException {
 		process();
 
 		try {
-			inputStream = resourceUtil.getResourceStream(MESSAGE_CONF_XML_NAME);
+			inputStream = resourceUtil.getResourceStream(messageConfXmlName);
 			messagesConf = (MessagesConfigFile) xStream.fromXML(inputStream);
 
 		} catch (ResourceNotFoundException e) {
@@ -54,7 +52,8 @@ public class ConfigFileReader extends XStreamProcessorBuilder {
 	}
 
 	public Message getMessage(InterfaceMessageException interfaceMessageException) {
-		ExceptionMessage exceptionMessage = messagesConf.getExceptionMessage(interfaceMessageException.getException());
+		Class exception = interfaceMessageException.getException();
+		ExceptionMessage exceptionMessage = messagesConf.getExceptionMessage(exception);
 		String idMessage = interfaceMessageException.getIdMessage();
 
 		if (idMessage == null) {

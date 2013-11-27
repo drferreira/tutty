@@ -2,7 +2,7 @@ package br.org.tutty.apis.messages.models;
 
 import javax.faces.application.FacesMessage.Severity;
 
-import br.org.tutty.util.xstream.GenericXStreamEnumConverter;
+import br.org.tutty.util.xstream.SeverityMessageConverter;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
@@ -18,7 +18,7 @@ public class Message {
 	@XStreamAsAttribute
 	private String key;
 	@XStreamAsAttribute
-	@XStreamConverter(GenericXStreamEnumConverter.class)
+	@XStreamConverter(SeverityMessageConverter.class)
 	private Severity severity;
 
 	public Boolean isDefault() {
