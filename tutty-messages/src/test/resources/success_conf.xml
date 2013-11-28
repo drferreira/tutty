@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages-conf>
+	<success-message>
+		<message severity="INFO">
+			<resource>messages</resource>
+			<key>test6</key>
+		</message>
+		<controlers>
+			<controler class=CONTROLER.class method=METHOD />
+			<controler class=CONTROLER.class method=METHOD />
+			<controler class=CONTROLER.class method=METHOD />
+		</controlers>
+	</success-message>
+</messages-conf>
